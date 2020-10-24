@@ -7,3 +7,20 @@
 //
 
 import Foundation
+
+struct EventDetailsViewModel {
+    let event: Event
+    
+    var title: String {
+        return event.title
+    }
+    var overview: String {
+        return event.overview
+    }
+    var price: String {
+        return "\(event.price)"
+    }
+    var date: String {
+        return "\(event.date)"
+    }
+}
