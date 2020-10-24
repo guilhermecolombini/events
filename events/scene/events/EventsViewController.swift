@@ -12,12 +12,12 @@ import RxCocoa
 
 class EventsViewController: UIViewController {
     let eventsView: EventsView
-    let viewModel: EventViewModel
+    let viewModel: EventsViewModel
     let disposeBag: DisposeBag
     
     init() {
         eventsView = EventsView()
-        viewModel = EventViewModel()
+        viewModel = EventsViewModel()
         disposeBag = DisposeBag()
         
         super.init(nibName: nil, bundle: nil)
