@@ -13,9 +13,10 @@ struct Event: Decodable {
     let title: String
     let overview: String
     let price: Double
+    let date: Int
     
     enum CodingKeys: String, CodingKey {
         case overview = "description"
-        case id, title, price
+        case id, title, price, date
     }
 }
