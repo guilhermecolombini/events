@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+struct Event: Decodable {
+    let id: String
+    let title: String
+    let overview: String
+    let price: Double
+    
+    enum CodingKeys: String, CodingKey {
+        case overview = "description"
+        case id, title, price
+    }
+}
