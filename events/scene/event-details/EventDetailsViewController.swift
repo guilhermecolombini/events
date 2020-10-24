@@ -44,9 +44,9 @@ class EventDetailsViewController: UIViewController {
     }
     
     func bindUI() {
-        eventDetailsView.titleLabel.text = viewModel.title
-        eventDetailsView.overviewLabel.text = viewModel.overview
-        eventDetailsView.priceLabel.text = viewModel.price
-        eventDetailsView.dateLabel.text = viewModel.date
+        eventDetailsView.titleLabel.text = viewModel.title()
+        eventDetailsView.overviewLabel.text = viewModel.overview()
+        eventDetailsView.priceLabel.text = viewModel.price()
+        eventDetailsView.dateLabel.text = viewModel.date()
     }
 }

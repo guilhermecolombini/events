@@ -7,20 +7,40 @@
 //
 
 import Foundation
+import RxSwift
 
 struct EventDetailsViewModel {
     let event: Event
+    let disposeBag = DisposeBag()
     
-    var title: String {
+    func title() -> String {
         return event.title
     }
-    var overview: String {
+    
+    func overview() -> String {
         return event.overview
     }
-    var price: String {
+    
+    func price() -> String {
         return "\(event.price)"
     }
-    var date: String {
+    
+    func date() -> String {
         return "\(event.date)"
+    }
+    
+    func checkin() {
+        let service = Service()
+        service.request(endpoint: EventAPI.checkin(id: event.id, name: "test", email: "test"))
+            .subscribe(onNext: { (result: Result<Checkin, ServiceError>) in
+                switch (result) {
+                case .success(let checkin):
+                    print(checkin)
+                    
+                case .failure(let error):
+                    print(error)
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
