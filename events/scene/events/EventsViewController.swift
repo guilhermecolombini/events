@@ -11,9 +11,21 @@ import RxSwift
 import RxCocoa
 
 class EventsViewController: UIViewController {
-    let viewModel = EventViewModel()
-    let eventsView = EventsView()
-    let disposeBag = DisposeBag()
+    let eventsView: EventsView
+    let viewModel: EventViewModel
+    let disposeBag: DisposeBag
+    
+    init() {
+        eventsView = EventsView()
+        viewModel = EventViewModel()
+        disposeBag = DisposeBag()
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,14 +33,7 @@ class EventsViewController: UIViewController {
         title = "Eventos"
         view.backgroundColor = .white
         
-        view.addSubview(eventsView)
-        NSLayoutConstraint.activate([
-            eventsView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            eventsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            eventsView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            eventsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-        ])
-        
+        setupView()
         bindUI()
     }
     
@@ -38,11 +43,32 @@ class EventsViewController: UIViewController {
         viewModel.fetchEvents()
     }
     
+    func setupView() {
+        view.addSubview(eventsView)
+        NSLayoutConstraint.activate([
+            eventsView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            eventsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            eventsView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            eventsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
+    }
+    
     func bindUI() {
         viewModel.eventsPublish
             .bind(to: eventsView.tableView.rx.items(cellIdentifier: "EventTableViewCell", cellType: EventTableViewCell.self)) { _, event, cell in
                 cell.setContent(event)
             }
             .disposed(by: disposeBag)
+        
+        eventsView.tableView.rx.modelSelected(Event.self)
+            .subscribe(onNext: { [weak self] event in
+                guard let self = self else { return }
+                self.routeToEventsDetail(event)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func routeToEventsDetail(_ event: Event) {
+        navigationController?.pushViewController(EventDetailsViewController(with: event), animated: true)
     }
 }
