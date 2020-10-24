@@ -18,7 +18,7 @@ enum ServiceError: Error {
     case badRequest
     
     var localizedDescription: String {
-        switch self {
+        switch (self) {
         case .unknown:
             return "Erro desconhecido"
         case .url:
