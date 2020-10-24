@@ -6,4 +6,10 @@
 //  Copyright © 2020 Guilherme Colombini. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+extension UIView {
+    func addSubviews(_ views: [UIView]) {
+        views.forEach({ addSubview($0) })
+    }
+}
