@@ -9,15 +9,35 @@
 import UIKit
 
 enum Palette {
-    case primary, secondary
+    enum Label {
+        case primary, secondary
+        
+        var color: UIColor {
+            switch (self) {
+            case .primary:
+                return .black
+                
+            case .secondary:
+                return .darkGray
+            }
+        }
+    }
     
-    var color: UIColor {
-        switch (self) {
-        case .primary:
-            return .black
-            
-        case .secondary:
-            return .darkGray
+    enum Button {
+        case filled
+        
+        var color: UIColor {
+            switch (self) {
+            case .filled:
+                return .systemBlue
+            }
+        }
+        
+        var fontColor: UIColor {
+            switch (self) {
+            case .filled:
+                return .white
+            }
         }
     }
 }
