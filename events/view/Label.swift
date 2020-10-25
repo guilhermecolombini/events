@@ -29,31 +29,34 @@ class Label: UILabel {
         get { return super.text }
     }
     
-    var shouldUpdateLayout: Bool = true
+    var shouldUpdateLayout = true
     
-    // MARK: - Initialization
-    public convenience init(
+    convenience init(
         text: String? = nil,
         style: Style = .body,
         customTextColor: UIColor? = nil,
         textAlignment: NSTextAlignment = .left
     ) {
         self.init(frame: .zero)
+        
         shouldUpdateLayout = false
         self.text = text
         self.style = style
         self.customTextColor = customTextColor
         self.textAlignment = textAlignment
         shouldUpdateLayout = true
+        
         customizeViews()
     }
     
-    public override init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        translatesAutoresizingMaskIntoConstraints = false
         customizeViews()
     }
     
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -65,11 +68,11 @@ class Label: UILabel {
     func updateStyle() {
         switch (style) {
         case .title:
-            textColor = Typography.title.color
+            textColor = Palette.Label.primary.color
             font = Typography.title.font
             
         case .body:
-            textColor = Typography.body.color
+            textColor = Palette.Label.primary.color
             font = Typography.body.font
         }
         
