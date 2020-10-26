@@ -62,10 +62,10 @@ class EventsViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        eventsView.tableView.rx.itemSelected
-            .subscribe(onNext: { [weak self] indexPath in
+        viewModel.isLoading
+            .subscribe(onNext: { [weak self] isLoading in
                 guard let self = self else { return }
-                self.routeToEventsDetail(indexPath.row)
+                self.eventsView.isLoading = isLoading
             })
             .disposed(by: disposeBag)
         
@@ -73,6 +73,13 @@ class EventsViewController: UIViewController {
             .subscribe(onNext: { [weak self] error in
                 guard let self = self else { return }
                 self.presentAlert(with: error)
+            })
+            .disposed(by: disposeBag)
+        
+        eventsView.tableView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let self = self else { return }
+                self.routeToEventsDetail(indexPath.row)
             })
             .disposed(by: disposeBag)
     }
