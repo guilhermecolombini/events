@@ -70,5 +70,18 @@ class EventDetailsViewController: UIViewController {
                 self.presentAlert(with: error)
             })
             .disposed(by: disposeBag)
+        
+        eventDetailsView.shareButton.rx.tap
+            .bind {[weak self] in
+                guard let self = self else { return }
+                self.presentShareViewController()
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func presentShareViewController() {
+        let activityViewController = UIActivityViewController(activityItems: [viewModel.title(), viewModel.price(), viewModel.date()], applicationActivities: nil)
+        activityViewController.isModalInPresentation = true
+        present(activityViewController, animated: true, completion: nil)
     }
 }
