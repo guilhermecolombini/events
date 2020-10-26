@@ -34,6 +34,7 @@
 		88F1D7F62544E50E00B6438B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1D7F52544E50E00B6438B /* Button.swift */; };
 		88F1D7FC2547191A00B6438B /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1D7FB2547191A00B6438B /* DateFormat.swift */; };
 		88F1D7FE2547379400B6438B /* CurrencyFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1D7FD2547379400B6438B /* CurrencyFormat.swift */; };
+		88F1D80025473C4400B6438B /* EventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1D7FF25473C4400B6438B /* EventCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		88F1D7F52544E50E00B6438B /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		88F1D7FB2547191A00B6438B /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
 		88F1D7FD2547379400B6438B /* CurrencyFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormat.swift; sourceTree = "<group>"; };
+		88F1D7FF25473C4400B6438B /* EventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellViewModel.swift; sourceTree = "<group>"; };
 		941DCB33DD8527B697C833FC /* Pods_events.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_events.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A234ACF043CD57523891267F /* Pods-events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-events.release.xcconfig"; path = "Target Support Files/Pods-events/Pods-events.release.xcconfig"; sourceTree = "<group>"; };
 		BD2E665A139327265256E140 /* Pods_eventsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eventsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				88F1D7D325438F1400B6438B /* EventTableViewCell.swift */,
+				88F1D7FF25473C4400B6438B /* EventCellViewModel.swift */,
 			);
 			path = "event-cell";
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				88F1D78E254354F000B6438B /* SceneDelegate.swift in Sources */,
 				88F1D7C02543609600B6438B /* EventAPI.swift in Sources */,
 				88F1D7FE2547379400B6438B /* CurrencyFormat.swift in Sources */,
+				88F1D80025473C4400B6438B /* EventCellViewModel.swift in Sources */,
 				88F1D7BE2543606A00B6438B /* APIProtocol.swift in Sources */,
 				88F1D7C5254374DD00B6438B /* ServiceError.swift in Sources */,
 				88F1D7F22544E45600B6438B /* Palette.swift in Sources */,
