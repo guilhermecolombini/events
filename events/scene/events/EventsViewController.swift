@@ -55,20 +55,23 @@ class EventsViewController: UIViewController {
     
     func bindUI() {
         viewModel.eventsPublish
-            .bind(to: eventsView.tableView.rx.items(cellIdentifier: "EventTableViewCell", cellType: EventTableViewCell.self)) { _, event, cell in
-                cell.setContent(event)
+            .bind(to: eventsView.tableView.rx.items(cellIdentifier: "EventTableViewCell", cellType: EventTableViewCell.self)) { _, viewModel, cell in
+                cell.titleLabel.text = viewModel.title()
+                cell.priceLabel.text = viewModel.price()
+                cell.dateLabel.text = viewModel.date()
             }
             .disposed(by: disposeBag)
         
-        eventsView.tableView.rx.modelSelected(Event.self)
-            .subscribe(onNext: { [weak self] event in
+        eventsView.tableView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
                 guard let self = self else { return }
-                self.routeToEventsDetail(event)
+                self.routeToEventsDetail(indexPath.row)
             })
             .disposed(by: disposeBag)
     }
     
-    func routeToEventsDetail(_ event: Event) {
+    func routeToEventsDetail(_ eventRow: Int) {
+        let event = viewModel.event(from: eventRow)
         navigationController?.pushViewController(EventDetailsViewController(with: event), animated: true)
     }
 }
