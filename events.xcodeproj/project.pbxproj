@@ -32,6 +32,8 @@
 		88F1D7EE2544E14600B6438B /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1D7ED2544E14600B6438B /* Typography.swift */; };
 		88F1D7F22544E45600B6438B /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1D7F12544E45600B6438B /* Palette.swift */; };
 		88F1D7F62544E50E00B6438B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1D7F52544E50E00B6438B /* Button.swift */; };
+		88F1D7FC2547191A00B6438B /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1D7FB2547191A00B6438B /* DateFormat.swift */; };
+		88F1D7FE2547379400B6438B /* CurrencyFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1D7FD2547379400B6438B /* CurrencyFormat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 		88F1D7ED2544E14600B6438B /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		88F1D7F12544E45600B6438B /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		88F1D7F52544E50E00B6438B /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		88F1D7FB2547191A00B6438B /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
+		88F1D7FD2547379400B6438B /* CurrencyFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormat.swift; sourceTree = "<group>"; };
 		941DCB33DD8527B697C833FC /* Pods_events.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_events.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A234ACF043CD57523891267F /* Pods-events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-events.release.xcconfig"; path = "Target Support Files/Pods-events/Pods-events.release.xcconfig"; sourceTree = "<group>"; };
 		BD2E665A139327265256E140 /* Pods_eventsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eventsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,7 +219,9 @@
 		88F1D7CF25438B5C00B6438B /* util */ = {
 			isa = PBXGroup;
 			children = (
-				88F1D7D025438B7700B6438B /* UIView.swift */,
+				88F1D7FB2547191A00B6438B /* DateFormat.swift */,
+				88F1D7FD2547379400B6438B /* CurrencyFormat.swift */,
+				88F1D7F72547174700B6438B /* extension */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -264,6 +270,14 @@
 				88F1D7F12544E45600B6438B /* Palette.swift */,
 			);
 			path = style;
+			sourceTree = "<group>";
+		};
+		88F1D7F72547174700B6438B /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				88F1D7D025438B7700B6438B /* UIView.swift */,
+			);
+			path = extension;
 			sourceTree = "<group>";
 		};
 		E49F62BD1762C6F1C2E3DF6A /* Frameworks */ = {
@@ -451,6 +465,7 @@
 				88F1D7D8254392DC00B6438B /* EventsViewModel.swift in Sources */,
 				88F1D78E254354F000B6438B /* SceneDelegate.swift in Sources */,
 				88F1D7C02543609600B6438B /* EventAPI.swift in Sources */,
+				88F1D7FE2547379400B6438B /* CurrencyFormat.swift in Sources */,
 				88F1D7BE2543606A00B6438B /* APIProtocol.swift in Sources */,
 				88F1D7C5254374DD00B6438B /* ServiceError.swift in Sources */,
 				88F1D7F22544E45600B6438B /* Palette.swift in Sources */,
@@ -462,6 +477,7 @@
 				88F1D7CC254389F200B6438B /* EventsViewController.swift in Sources */,
 				88F1D7EE2544E14600B6438B /* Typography.swift in Sources */,
 				88F1D7E62544BAEE00B6438B /* EventDetailsViewModel.swift in Sources */,
+				88F1D7FC2547191A00B6438B /* DateFormat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
