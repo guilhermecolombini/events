@@ -68,6 +68,13 @@ class EventsViewController: UIViewController {
                 self.routeToEventsDetail(indexPath.row)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.errorPublish
+            .subscribe(onNext: { [weak self] error in
+                guard let self = self else { return }
+                self.presentAlert(with: error)
+            })
+            .disposed(by: disposeBag)
     }
     
     func routeToEventsDetail(_ eventRow: Int) {

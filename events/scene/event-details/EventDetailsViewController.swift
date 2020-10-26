@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import RxSwift
 
 class EventDetailsViewController: UIViewController {
     let eventDetailsView: EventDetailsView
     let viewModel: EventDetailsViewModel
+    let disposeBag = DisposeBag()
     
     init(with event: Event) {
         eventDetailsView = EventDetailsView()
@@ -48,5 +50,25 @@ class EventDetailsViewController: UIViewController {
         eventDetailsView.overviewLabel.text = viewModel.overview()
         eventDetailsView.priceLabel.text = viewModel.price()
         eventDetailsView.dateLabel.text = viewModel.date()
+        
+        viewModel.checkinPublish
+            .subscribe(onNext: { [weak self] checkin in
+                guard let self = self else { return }
+                
+                if (checkin.code == "200") {
+                    self.presentAlert(with: "Sucesso", message: "Check-in realizado", actionTitle: "Ok")
+                }
+                else {
+                    self.presentAlert(with: "Error", message: "Falha ao realizar o check-in", actionTitle: "Ok")
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.errorPublish
+            .subscribe(onNext: { [weak self] error in
+                guard let self = self else { return }
+                self.presentAlert(with: error)
+            })
+            .disposed(by: disposeBag)
     }
 }

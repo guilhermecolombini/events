@@ -14,6 +14,7 @@ class EventsViewModel {
     private var events: [Event] = []
     
     let eventsPublish = PublishSubject<[EventCellViewModel]>()
+    let errorPublish = PublishSubject<ServiceError>()
     
     func fetchEvents() {
         let service = Service()
@@ -26,7 +27,7 @@ class EventsViewModel {
                     self.eventsPublish.onNext(events.map({ EventCellViewModel(event: $0) }))
                     
                 case .failure(let error):
-                    print(error)
+                    self.errorPublish.onNext(error)
                 }
             })
             .disposed(by: disposeBag)

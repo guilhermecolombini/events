@@ -9,9 +9,16 @@
 import Foundation
 import RxSwift
 
-struct EventDetailsViewModel {
+class EventDetailsViewModel {
     let event: Event
     let disposeBag = DisposeBag()
+    
+    let checkinPublish = PublishSubject<Checkin>()
+    let errorPublish = PublishSubject<ServiceError>()
+    
+    init(event: Event) {
+        self.event = event
+    }
     
     func title() -> String {
         return event.title
@@ -34,13 +41,15 @@ struct EventDetailsViewModel {
     func checkin() {
         let service = Service()
         service.request(endpoint: EventAPI.checkin(id: event.id, name: "test", email: "test"))
-            .subscribe(onNext: { (result: Result<Checkin, ServiceError>) in
+            .subscribe(onNext: { [weak self] (result: Result<Checkin, ServiceError>) in
+                guard let self = self else { return }
+                
                 switch (result) {
                 case .success(let checkin):
-                    print(checkin)
+                    self.checkinPublish.onNext(checkin)
                     
                 case .failure(let error):
-                    print(error)
+                    self.errorPublish.onNext(error)
                 }
             })
             .disposed(by: disposeBag)
