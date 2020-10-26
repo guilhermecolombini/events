@@ -52,14 +52,14 @@ class EventDetailsViewController: UIViewController {
         eventDetailsView.dateLabel.text = viewModel.date()
         
         eventDetailsView.checkinButton.rx.tap
-            .bind {[weak self] in
+            .bind { [weak self] in
                 guard let self = self else { return }
                 self.routeToCheckinViewController()
             }
             .disposed(by: disposeBag)
         
         eventDetailsView.shareButton.rx.tap
-            .bind {[weak self] in
+            .bind { [weak self] in
                 guard let self = self else { return }
                 self.presentShareViewController()
             }
