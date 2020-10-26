@@ -22,11 +22,13 @@ struct EventDetailsViewModel {
     }
     
     func price() -> String {
-        return "\(event.price)"
+        let currencyFormat = CurrencyFormat()
+        return currencyFormat.applyCurrency(in: event.price)
     }
     
     func date() -> String {
-        return "\(event.date)"
+        let dateFormat = DateFormat(with: event.date)
+        return dateFormat.formattedDate()
     }
     
     func checkin() {
