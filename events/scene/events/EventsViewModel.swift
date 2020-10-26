@@ -15,12 +15,19 @@ class EventsViewModel {
     
     let eventsPublish = PublishSubject<[EventCellViewModel]>()
     let errorPublish = PublishSubject<ServiceError>()
+    let isLoading = PublishSubject<Bool>()
     
     func fetchEvents() {
+        isLoading.onNext(true)
+        
         let service = Service()
         service.request(endpoint: EventAPI.events)
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] (result: Result<[Event], ServiceError>) in
                 guard let self = self else { return }
+                
+                self.isLoading.onNext(false)
+                
                 switch (result) {
                 case .success(let events):
                     self.events = events
@@ -29,6 +36,9 @@ class EventsViewModel {
                 case .failure(let error):
                     self.errorPublish.onNext(error)
                 }
+            }, onCompleted: { [weak self] in
+                guard let self = self else { return }
+                self.isLoading.onNext(false)
             })
             .disposed(by: disposeBag)
     }
