@@ -10,6 +10,18 @@ import UIKit
 
 class EventsView: UIView {
     var tableView: UITableView!
+    var loadingView: ActivityIndicatorView!
+    
+    var isLoading = false {
+        didSet {
+            if (isLoading) {
+                startAnimating()
+            }
+            else {
+                stopAnimating()
+            }
+        }
+    }
     
     init() {
         super.init(frame: .zero)
@@ -32,10 +44,15 @@ class EventsView: UIView {
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         tableView.register(EventTableViewCell.self, forCellReuseIdentifier: "EventTableViewCell")
+        
+        loadingView = ActivityIndicatorView()
     }
     
     func buildViewHierarchy() {
-        addSubview(tableView)
+        addSubviews([
+            tableView,
+            loadingView
+        ])
     }
     
     func setupConstraints() {
@@ -43,7 +60,21 @@ class EventsView: UIView {
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.topAnchor.constraint(equalTo: topAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            loadingView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            loadingView.topAnchor.constraint(equalTo: topAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+    
+    func startAnimating () {
+        loadingView.isHidden = false
+        loadingView.startAnimating()
+    }
+
+    func stopAnimating () {
+        loadingView.isHidden = true
+        loadingView.stopAnimating()
     }
 }
