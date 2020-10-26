@@ -51,24 +51,11 @@ class EventDetailsViewController: UIViewController {
         eventDetailsView.priceLabel.text = viewModel.price()
         eventDetailsView.dateLabel.text = viewModel.date()
         
-        viewModel.checkinPublish
-            .subscribe(onNext: { [weak self] checkin in
+        eventDetailsView.checkinButton.rx.tap
+            .bind {[weak self] in
                 guard let self = self else { return }
-                
-                if (checkin.code == "200") {
-                    self.presentAlert(with: "Sucesso", message: "Check-in realizado", actionTitle: "Ok")
-                }
-                else {
-                    self.presentAlert(with: "Error", message: "Falha ao realizar o check-in", actionTitle: "Ok")
-                }
-            })
-            .disposed(by: disposeBag)
-        
-        viewModel.errorPublish
-            .subscribe(onNext: { [weak self] error in
-                guard let self = self else { return }
-                self.presentAlert(with: error)
-            })
+                self.routeToCheckinViewController()
+            }
             .disposed(by: disposeBag)
         
         eventDetailsView.shareButton.rx.tap
@@ -77,6 +64,10 @@ class EventDetailsViewController: UIViewController {
                 self.presentShareViewController()
             }
             .disposed(by: disposeBag)
+    }
+    
+    func routeToCheckinViewController() {
+        present(CheckinViewController(with: viewModel.event), animated: true)
     }
     
     func presentShareViewController() {
