@@ -35,6 +35,7 @@
 		88F1D7FC2547191A00B6438B /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1D7FB2547191A00B6438B /* DateFormat.swift */; };
 		88F1D7FE2547379400B6438B /* CurrencyFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1D7FD2547379400B6438B /* CurrencyFormat.swift */; };
 		88F1D80025473C4400B6438B /* EventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1D7FF25473C4400B6438B /* EventCellViewModel.swift */; };
+		88F1D8022547428300B6438B /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1D8012547428300B6438B /* UIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		88F1D7FB2547191A00B6438B /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
 		88F1D7FD2547379400B6438B /* CurrencyFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormat.swift; sourceTree = "<group>"; };
 		88F1D7FF25473C4400B6438B /* EventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellViewModel.swift; sourceTree = "<group>"; };
+		88F1D8012547428300B6438B /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		941DCB33DD8527B697C833FC /* Pods_events.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_events.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A234ACF043CD57523891267F /* Pods-events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-events.release.xcconfig"; path = "Target Support Files/Pods-events/Pods-events.release.xcconfig"; sourceTree = "<group>"; };
 		BD2E665A139327265256E140 /* Pods_eventsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eventsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -279,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				88F1D7D025438B7700B6438B /* UIView.swift */,
+				88F1D8012547428300B6438B /* UIViewController.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				88F1D7BE2543606A00B6438B /* APIProtocol.swift in Sources */,
 				88F1D7C5254374DD00B6438B /* ServiceError.swift in Sources */,
 				88F1D7F22544E45600B6438B /* Palette.swift in Sources */,
+				88F1D8022547428300B6438B /* UIViewController.swift in Sources */,
 				88F1D7C3254361A100B6438B /* Service.swift in Sources */,
 				88F1D7E4254499F300B6438B /* EventDetailsView.swift in Sources */,
 				88F1D7E82544C96600B6438B /* Checkin.swift in Sources */,
