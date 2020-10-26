@@ -9,15 +9,18 @@
 import UIKit
 
 enum Typography {
-    case title, body
+    case title, body, button
 
     var font: UIFont {
         switch (self) {
         case .title:
-            return UIFont.boldSystemFont(ofSize: 16.0)
+            return UIFont.boldSystemFont(ofSize: 16)
             
         case .body:
             return UIFont.systemFont(ofSize: 14)
+            
+        case .button:
+            return UIFont.boldSystemFont(ofSize: 14)
         }
     }
 }
