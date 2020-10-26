@@ -55,10 +55,4 @@ class EventTableViewCell: UITableViewCell {
             dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
         ])
     }
-    
-    func setContent(_ event: Event) {
-        titleLabel.text = event.title
-        priceLabel.text = "\(event.price)"
-        dateLabel.text = "\(event.date)"
-    }
 }
