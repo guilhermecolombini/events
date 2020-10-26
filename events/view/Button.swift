@@ -57,10 +57,9 @@ class Button: UIButton {
     
     func setupComponent() {
         translatesAutoresizingMaskIntoConstraints = false
-        heightConstraint = heightAnchor.constraint(equalToConstant: 45.0)
+        heightConstraint = heightAnchor.constraint(equalToConstant: 40)
         heightConstraint?.isActive = true
         
-        layer.borderWidth = 1.5
         layer.cornerRadius = 8
     }
     
@@ -77,6 +76,7 @@ class Button: UIButton {
             layer.borderColor = Palette.Button.filled.color.cgColor
             backgroundColor = Palette.Button.filled.color
             titleLabel?.textColor = Palette.Button.filled.color
+            titleLabel?.font = Typography.button.font
         }
     }
     
