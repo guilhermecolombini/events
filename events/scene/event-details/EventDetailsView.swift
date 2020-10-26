@@ -10,12 +10,12 @@ import UIKit
 
 class EventDetailsView: UIView {
     var scrollView: UIScrollView!
-    var titleLabel: UILabel!
-    var overviewLabel: UILabel!
-    var priceLabel: UILabel!
-    var dateLabel: UILabel!
-    var checkinButton: UIButton!
-    var shareButton: UIButton!
+    var titleLabel: Label!
+    var overviewLabel: Label!
+    var priceLabel: Label!
+    var dateLabel: Label!
+    var checkinButton: Button!
+    var shareButton: Button!
     
     init() {
         super.init(frame: .zero)
@@ -37,28 +37,17 @@ class EventDetailsView: UIView {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.backgroundColor = .clear
         
-        titleLabel = UILabel(frame: .zero)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel = Label(style: .title)
         titleLabel.numberOfLines = 0
         
-        overviewLabel = UILabel(frame: .zero)
-        overviewLabel.translatesAutoresizingMaskIntoConstraints = false
+        overviewLabel = Label(style: .body)
         overviewLabel.numberOfLines = 0
         
-        priceLabel = UILabel(frame: .zero)
-        priceLabel.translatesAutoresizingMaskIntoConstraints = false
+        priceLabel = Label(style: .body)
+        dateLabel = Label(style: .body, textAlignment: .right)
         
-        dateLabel = UILabel(frame: .zero)
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.textAlignment = .right
-        
-        checkinButton = UIButton(frame: .zero)
-        checkinButton.translatesAutoresizingMaskIntoConstraints = false
-        checkinButton.setTitle("Check-in", for: .normal)
-        
-        shareButton = UIButton(frame: .zero)
-        shareButton.translatesAutoresizingMaskIntoConstraints = false
-        shareButton.setTitle("Compartihar", for: .normal)
+        checkinButton = Button(title: "Check-in", style: .filled, size: .small)
+        shareButton = Button(title: "Compartilhar", style: .filled, size: .small)
     }
     
     func buildViewHierarchy() {
@@ -89,11 +78,11 @@ class EventDetailsView: UIView {
             priceLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             priceLabel.topAnchor.constraint(equalTo: overviewLabel.bottomAnchor, constant: 8),
             dateLabel.centerYAnchor.constraint(equalTo: priceLabel.centerYAnchor),
-            dateLabel.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor, constant: 8),
+            dateLabel.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor, constant: 16),
             dateLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             checkinButton.widthAnchor.constraint(equalTo: shareButton.widthAnchor),
             checkinButton.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            checkinButton.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 8),
+            checkinButton.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 16),
             checkinButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             shareButton.centerYAnchor.constraint(equalTo: checkinButton.centerYAnchor),
             shareButton.leadingAnchor.constraint(equalTo: checkinButton.trailingAnchor, constant: 8),
