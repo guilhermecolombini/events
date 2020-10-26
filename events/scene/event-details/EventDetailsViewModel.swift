@@ -13,9 +13,6 @@ class EventDetailsViewModel {
     let event: Event
     let disposeBag = DisposeBag()
     
-    let checkinPublish = PublishSubject<Checkin>()
-    let errorPublish = PublishSubject<ServiceError>()
-    
     init(event: Event) {
         self.event = event
     }
@@ -36,22 +33,5 @@ class EventDetailsViewModel {
     func date() -> String {
         let dateFormat = DateFormat(with: event.date)
         return dateFormat.formattedDate()
-    }
-    
-    func checkin() {
-        let service = Service()
-        service.request(endpoint: EventAPI.checkin(id: event.id, name: "test", email: "test"))
-            .subscribe(onNext: { [weak self] (result: Result<Checkin, ServiceError>) in
-                guard let self = self else { return }
-                
-                switch (result) {
-                case .success(let checkin):
-                    self.checkinPublish.onNext(checkin)
-                    
-                case .failure(let error):
-                    self.errorPublish.onNext(error)
-                }
-            })
-            .disposed(by: disposeBag)
     }
 }
