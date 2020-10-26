@@ -19,26 +19,32 @@ class CheckinViewModel {
     
     let checkinPublish = PublishSubject<Checkin>()
     let errorPublish = PublishSubject<ServiceError>()
+    let isLoading = PublishSubject<Bool>()
     
     init(with event: Event) {
         self.event = event
     }
     
     func checkin() {
+        isLoading.onNext(true)
+        
         let service = Service()
         service.request(endpoint: EventAPI.checkin(id: event.id, name: nameRelay.value, email: emailRelay.value))
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] (result: Result<Checkin, ServiceError>) in
                 guard let self = self else { return }
+                self.isLoading.onNext(false)
                 
-                DispatchQueue.main.async {
-                    switch (result) {
-                    case .success(let checkin):
-                        self.checkinPublish.onNext(checkin)
-                        
-                    case .failure(let error):
-                        self.errorPublish.onNext(error)
-                    }
+                switch (result) {
+                case .success(let checkin):
+                    self.checkinPublish.onNext(checkin)
+                    
+                case .failure(let error):
+                    self.errorPublish.onNext(error)
                 }
+            }, onCompleted: { [weak self] in
+                guard let self = self else { return }
+                self.isLoading.onNext(false)
             })
             .disposed(by: disposeBag)
     }

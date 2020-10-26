@@ -12,6 +12,18 @@ class CheckinView: UIView {
     var nameTextField: UITextField!
     var emailTextField: UITextField!
     var confirmButton: Button!
+    var loadingView: ActivityIndicatorView!
+    
+    var isLoading = false {
+        didSet {
+            if (isLoading) {
+                startAnimating()
+            }
+            else {
+                stopAnimating()
+            }
+        }
+    }
     
     init() {
         super.init(frame: .zero)
@@ -46,6 +58,7 @@ class CheckinView: UIView {
         emailTextField.layer.borderWidth = 1.5
         
         confirmButton = Button(title: "Confirmar check-in", style: .filled, size: .small)
+        loadingView = ActivityIndicatorView()
     }
     
     func buildViewHierarchy() {
@@ -70,5 +83,21 @@ class CheckinView: UIView {
             confirmButton.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor),
             confirmButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
         ])
+    }
+    
+    func startAnimating () {
+        addSubview(loadingView)
+        NSLayoutConstraint.activate([
+            loadingView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            loadingView.topAnchor.constraint(equalTo: topAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        loadingView.startAnimating()
+    }
+    
+    func stopAnimating () {
+        loadingView.removeFromSuperview()
+        loadingView.stopAnimating()
     }
 }

@@ -61,6 +61,13 @@ class CheckinViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.isLoading
+            .subscribe(onNext: { [weak self] isLoading in
+                guard let self = self else { return }
+                self.checkinView.isLoading = isLoading
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.errorPublish
             .subscribe(onNext: { [weak self] error in
                 guard let self = self else { return }
